@@ -8,6 +8,6 @@ import { eq } from "drizzle-orm";
 export async function getDraftsCount() {
     const id = await getUserId();
 
-    const count = await db.$count(drafts, eq(drafts.id, id))
+    const count = await db.$count(drafts, eq(drafts.userId, id))
     return count
 }
