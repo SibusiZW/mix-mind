@@ -4,10 +4,11 @@ import { BrainCircuit, Loader2, Copy } from "lucide-react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { generatePlan } from "@/server/openrouter";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
+import { createPlan } from "@/server/plans";
 
 export default function PlanForm() {
 
@@ -29,6 +30,16 @@ export default function PlanForm() {
         await navigator.clipboard.writeText(response);
         toast.success("Succesfully copied to clipboard!!")
     }
+
+    useEffect(() => {
+        const updateDB = async () => {
+            await createPlan(title, draft, tech, response)
+        }
+
+        if (response !== '') {
+            updateDB()
+        }
+    }, [response])
 
     return (
         <div className="w-full p-6 space-x-4 max-w-[700px]">
