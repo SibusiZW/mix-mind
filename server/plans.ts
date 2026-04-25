@@ -28,3 +28,8 @@ export async function getPlan(id: string) {
     const allPlans = await db.select().from(plans).where(eq(plans.id, id)).limit(1);
     return allPlans[0];
 } 
+
+export async function deletePlans() {
+    const userId = await getUserId();
+    await db.delete(plans).where(eq(plans.userId, userId))
+}
