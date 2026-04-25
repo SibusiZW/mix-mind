@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import ThemeToggle from "@/components/theme-toggle";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -31,6 +32,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             </div>
 
                             {children}
+                            <Toaster />
                         </ThemeProvider>
 
                     </main>
