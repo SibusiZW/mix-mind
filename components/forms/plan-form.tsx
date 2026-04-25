@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import React, { useState } from "react";
 import { generatePlan } from "@/server/openrouter";
+import ReactMarkdown from "react-markdown";
 
 export default function PlanForm() {
 
@@ -34,7 +35,9 @@ export default function PlanForm() {
                 </Button>
             </form>
 
-            <div className="w-full border border-zinc-200 p-4 overflow-y-auto relative rounded-[10px] shadow-md">{response}</div>
+            <div className="w-full border border-zinc-200 p-4 overflow-y-auto relative rounded-[10px] shadow-md">
+                <ReactMarkdown>{response}</ReactMarkdown>
+            </div>
         </div>
     )
 }
