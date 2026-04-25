@@ -16,3 +16,10 @@ export async function createPlan(title: string, draft: string, techDetails: stri
     const userId = await getUserId();
     await db.insert(plans).values({ title: title, draft: draft, techDetails: techDetails, response: response, userId: userId })
 }
+
+export async function getPlans() {
+    const userId = await getUserId();
+
+    const allPlans = await db.select().from(plans).where(eq(plans.userId, userId))
+    return allPlans
+}

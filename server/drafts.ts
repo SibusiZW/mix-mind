@@ -16,3 +16,9 @@ export async function createDraft(title: string, baseIdea: string, details: stri
     const userId = await getUserId();
     await db.insert(drafts).values({ title: title, baseIdea: baseIdea, details: details, userId: userId, response: response })
 }
+
+export async function getDrafts() {
+    const userId = await getUserId()
+    const allDrafts = await db.select().from(drafts).where(eq(drafts.userId, userId))
+    return allDrafts
+}
