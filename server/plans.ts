@@ -23,3 +23,8 @@ export async function getPlans() {
     const allPlans = await db.select().from(plans).where(eq(plans.userId, userId))
     return allPlans
 }
+
+export async function getPlan(id: string) {
+    const allPlans = await db.select().from(plans).where(eq(plans.id, id)).limit(1);
+    return allPlans[0];
+} 
