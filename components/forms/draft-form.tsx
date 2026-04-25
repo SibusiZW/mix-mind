@@ -11,6 +11,7 @@ import { toast } from "sonner";
 
 export default function DraftForm() {
 
+    const [title, setTitle] = useState("");
     const [baseIdea, setBaseIdea] = useState("");
     const [details, setDetails] = useState("");
     const [response, setResponse] = useState("");
@@ -34,6 +35,7 @@ export default function DraftForm() {
             <h1 className="text-3xl font-serif mb-4">Create a <span className="text-green-500">draft</span></h1>
 
             <form onSubmit={handleSubmit}>
+                <Input placeholder="Enter the desired title of your draft" className="mb-2" onChange={(e) => setTitle(e.target.value)} value={title} required/>
                 <Input value={baseIdea} placeholder='Enter the base idea e.g, "Uber + Farming"' className="mb-2" onChange={(e) => setBaseIdea(e.target.value)} required/>
                 <Textarea value={details} placeholder="Enter you details like location and how much time needed for funding" className="mb-2" onChange={(e) => setDetails(e.target.value)} required/>
 
