@@ -19,3 +19,6 @@ export const plans = pgTable('plans', {
     userId: text().notNull(),
     createdAt: timestamp().defaultNow()
 })
+
+export type Plan = typeof plans.$inferSelect
+export type Draft = typeof drafts.$inferSelect
