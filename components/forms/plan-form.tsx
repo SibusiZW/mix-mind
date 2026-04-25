@@ -10,7 +10,7 @@ export default function PlanForm() {
 
             <form>
                 <Textarea placeholder='Enter your startup draft here' className="mb-2" required/>
-                <Textarea placeholder="Enter the details of your tech stact and the ecosystem you're targeting e.g mobile or web" className="mb-2" required/>
+                <Textarea placeholder="Enter the details of your tech stack and the ecosystem you're targeting e.g mobile or web" className="mb-2" required/>
 
                 <Button type={'submit'} className="w-full mb-6 bg-green-500 hover:bg-green-300">
                     <BrainCircuit />
