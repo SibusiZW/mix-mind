@@ -20,7 +20,7 @@ export default function PlanDisplay({ plan }: { plan: Plan | undefined }) {
 
     return (
         <div className="w-full p-6 space-x-4 max-w-[700px]">
-            <h1 className="text-3xl font-serif mb-4">Create a <span className="text-green-500">plan</span></h1>
+            <h1 className="text-3xl font-serif mb-4">{plan?.title}</h1>
 
             <form>
                 <Textarea value={plan?.draft} placeholder='Enter your startup draft here' className="mb-2" readOnly/>
