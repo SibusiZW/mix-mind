@@ -69,11 +69,11 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
       items: [
         {
           title: "Delete all drafts",
-          url: "#"
+          url: "/dashboard/delete/drafts"
         },
         {
           title: "Delete all plans",
-          url: "#"
+          url: "/dashboard/delete/plans"
         }
       ]
     }
