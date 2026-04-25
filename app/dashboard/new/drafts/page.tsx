@@ -1,5 +1,9 @@
+import DraftForm from "@/components/forms/draft-form";
+
 export default function NewDraftsPage() {
     return (
-        <div></div>
+        <div className="w-full">
+            <DraftForm />
+        </div>
     )
 }
