@@ -1,16 +1,14 @@
-'use client';
-
 import DraftStats from "@/components/stats/draft-stats";
 import PlanStats from "@/components/stats/plan-stats";
-import { useUser } from "@clerk/nextjs";
+import { getName } from "@/server/auth";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
 
-    const { user } = useUser();
+    const firstName = await getName();
 
     return (
         <div className="p-4">
-            <h1 className="text-4xl font-serif">Welcome, <span className="text-green-500">{user?.firstName}!</span></h1>
+            <h1 className="text-4xl font-serif">Welcome, <span className="text-green-500">{firstName}!</span></h1>
             <DraftStats />
             <PlanStats />
         </div>
