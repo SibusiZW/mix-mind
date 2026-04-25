@@ -1,24 +1,41 @@
-import { BrainCog } from "lucide-react";
+'use client';
+
+import { BrainCog, Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import React, { useState } from "react";
+import { generateDraft } from "@/server/openrouter";
 
 export default function DraftForm() {
+
+    const [baseIdea, setBaseIdea] = useState("");
+    const [details, setDetails] = useState("");
+    const [response, setResponse] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    async function handleSubmit(e: React.SubmitEvent) {
+        e.preventDefault()
+        setLoading(true);
+        const res = await generateDraft(baseIdea, details)
+        setLoading(false);
+        setResponse(res);
+    }
+
     return (
         <div className="w-full p-6 space-x-4">
             <h1 className="text-3xl font-serif mb-4">Create a <span className="text-green-500">draft</span></h1>
 
-            <form>
-                <Input placeholder='Enter the base idea e.g, "Uber + Farming"' className="mb-2" required/>
-                <Textarea placeholder="Enter you details like location and how much time needed for funding" className="mb-2" required/>
+            <form onSubmit={handleSubmit}>
+                <Input value={baseIdea} placeholder='Enter the base idea e.g, "Uber + Farming"' className="mb-2" onChange={(e) => setBaseIdea(e.target.value)} required/>
+                <Textarea value={details} placeholder="Enter you details like location and how much time needed for funding" className="mb-2" onChange={(e) => setDetails(e.target.value)} required/>
 
                 <Button type={'submit'} className="w-full mb-6 bg-green-500 hover:bg-green-300">
-                    <BrainCog />
-                    Generate startup draft
+                    {loading ? <Loader2 className="animate-spin"/> : <><BrainCog /> Generate a startup draft</>}
                 </Button>
             </form>
 
-            <div className="w-full border border-zinc-200 p-4 overflow-y-auto relative rounded-[10px] shadow-md"></div>
+            <div className="w-full border border-zinc-200 p-4 overflow-y-auto relative rounded-[10px] shadow-md">{response}</div>
         </div>
     )
 }
