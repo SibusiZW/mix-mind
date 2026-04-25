@@ -25,5 +25,5 @@ export async function getDrafts() {
 
 export async function getDraft(id: string) {
     const allDrafts = await db.select().from(drafts).where(eq(drafts.id, id)).limit(1)
-    return allDrafts[0];
+    return allDrafts[0]
 }
