@@ -1,4 +1,4 @@
-export default async function PlanStats() {
+export default function PlanStats() {
     const plansCount = 0;
 
     return (

@@ -1,4 +1,4 @@
-export default async function DraftStats() {
+export default function DraftStats() {
     const draftsCount = 0;
 
     return (
