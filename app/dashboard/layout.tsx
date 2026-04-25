@@ -4,6 +4,7 @@ import HomePage from "../page";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -16,18 +17,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <SidebarProvider>
                     <AppSidebar />
 
-                    <main>
-                        <div>
-                            <SidebarTrigger />
-                            
-                        </div>
-                        
+                    <main className="w-full p-4">
                         <ThemeProvider
                             attribute="class"
                             defaultTheme="system"
                             enableSystem
                            disableTransitionOnChange
                         >
+
+                            <div>
+                                <SidebarTrigger />
+                                <ThemeToggle />
+                            </div>
+
                             {children}
                         </ThemeProvider>
 
