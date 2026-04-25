@@ -17,7 +17,7 @@ export default function Intro() {
             <Show when={'signed-in'}>
                 <Button variant={'link'} className="w-full bg-green-500 hover:bg-green-300">
                     <LayoutDashboard />
-                    <Link href="/">Continue to dashboard</Link>
+                    <Link href="/dashboard">Continue to dashboard</Link>
                 </Button>
             </Show>
 

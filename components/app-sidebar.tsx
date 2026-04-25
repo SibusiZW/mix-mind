@@ -33,11 +33,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       items: [
         {
           title: "Create new draft",
-          url: "#",
+          url: "/dashboard/new/drafts",
         },
         {
           title: "Create new plan",
-          url: "#",
+          url: "/dashboard/new/plans",
         },
       ],
     },
