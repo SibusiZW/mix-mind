@@ -29,6 +29,11 @@ export default function PlanForm() {
     async function copy() {
         await navigator.clipboard.writeText(response);
         toast.success("Succesfully copied to clipboard!!")
+
+        setResponse('');
+        setTech('')
+        setDraft('')
+        setTitle('')
     }
 
     useEffect(() => {
