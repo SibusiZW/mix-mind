@@ -4,10 +4,11 @@ import { BrainCog, Copy, Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { generateDraft } from "@/server/openrouter";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
+import { createDraft } from "@/server/drafts";
 
 export default function DraftForm() {
 
@@ -29,6 +30,16 @@ export default function DraftForm() {
         await navigator.clipboard.writeText(response)
         toast.success("Succesfully copied to clipboard!!")
     }
+
+    useEffect(() => {
+        const updateDB = async () => {
+            await createDraft(title, baseIdea, details, response)
+        }
+
+        if (response.trim() !== '') {
+            updateDB();
+        }
+    }, [response])
 
     return (
         <div className="w-full max-w-[700px] p-6 space-x-4">
