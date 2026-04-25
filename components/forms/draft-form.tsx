@@ -1,11 +1,13 @@
 'use client';
 
-import { BrainCog, Loader2 } from "lucide-react";
+import { BrainCog, Copy, Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import React, { useState } from "react";
 import { generateDraft } from "@/server/openrouter";
+import ReactMarkdown from "react-markdown";
+import { toast } from "sonner";
 
 export default function DraftForm() {
 
@@ -22,8 +24,13 @@ export default function DraftForm() {
         setResponse(res);
     }
 
+    async function copy() {
+        await navigator.clipboard.writeText(response)
+        toast.success("Succesfully copied to clipboard!!")
+    }
+
     return (
-        <div className="w-full p-6 space-x-4">
+        <div className="w-full max-w-[700px] p-6 space-x-4">
             <h1 className="text-3xl font-serif mb-4">Create a <span className="text-green-500">draft</span></h1>
 
             <form onSubmit={handleSubmit}>
@@ -35,7 +42,13 @@ export default function DraftForm() {
                 </Button>
             </form>
 
-            <div className="w-full border border-zinc-200 p-4 overflow-y-auto relative rounded-[10px] shadow-md">{response}</div>
+            <div className="w-full border mb-4 border-zinc-200 p-4 overflow-y-auto relative rounded-[10px] shadow-md">
+                <ReactMarkdown>{response}</ReactMarkdown>
+            </div>
+            <Button onClick={copy} className="w-full">
+                <Copy />
+                Copy to clipboard
+            </Button>
         </div>
     )
 }
