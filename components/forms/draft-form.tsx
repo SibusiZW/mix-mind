@@ -29,6 +29,11 @@ export default function DraftForm() {
     async function copy() {
         await navigator.clipboard.writeText(response)
         toast.success("Succesfully copied to clipboard!!")
+
+        setTitle('')
+        setResponse('')
+        setBaseIdea('')
+        setDetails('')
     }
 
     useEffect(() => {
