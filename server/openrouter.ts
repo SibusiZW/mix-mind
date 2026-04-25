@@ -24,3 +24,22 @@ export async function generateDraft(baseIdea: string, details: string) {
         return "An error occured"
     }
 }
+
+export async function generatePlan(draft: string, stackDetails: string) {
+    try {
+        const response = await client.chat.send({
+            chatRequest: {
+                model: model,
+                messages: [
+                    { role: 'system', content: "You are a former big shot founder from Silicon Valley. Your job is to generate a full fledged startup plan from a draft which is written in Markdown or any other format. You should also be given the tech stack and any other technical details to aid you." },
+                    { role: 'user', content: `Hi here is the draft for my startup idea: ${draft} and here are the technical details: ${stackDetails}` }
+                ]
+            }
+        })
+
+        return response?.choices[0].message.content
+    } catch (e) {
+        console.error(e)
+        return "An error occured"
+    }
+}
