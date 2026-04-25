@@ -1,5 +1,7 @@
-export default function PlanStats() {
-    const plansCount = 0;
+import { getPlansCount } from "@/server/plans";
+
+export default async function PlanStats() {
+    const plansCount = await getPlansCount();
 
     return (
         <div className="p-8 border mb-4 rounded-[10px] border-green-200 w-full">
