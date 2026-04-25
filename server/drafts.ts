@@ -11,3 +11,8 @@ export async function getDraftsCount() {
     const count = await db.$count(drafts, eq(drafts.userId, id))
     return count
 }
+
+export async function createDraft(title: string, baseIdea: string, details: string, response: string) {
+    const userId = await getUserId();
+    await db.insert(drafts).values({ title: title, baseIdea: baseIdea, details: details, userId: userId, response: response })
+}
