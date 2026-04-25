@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 
 import { NavMain } from "@/components/nav-main"
@@ -12,9 +10,14 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon, TreePalm, Binary, SquareLibrary, Activity } from "lucide-react"
+import { TerminalSquareIcon, TreePalm, Binary, SquareLibrary, Activity } from "lucide-react"
+import { getDrafts } from "@/server/drafts"
+import { getPlans } from "@/server/plans"
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  const drafts = await getDrafts();
+  const plans = await getPlans();
 
   const data = {
   brand: {
@@ -47,7 +50,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       icon: (
         <Binary />
       ),
-      items: [],
+      items: drafts.map(d => d ? { title: d.title, url: `/dashboard/drafts/${d.id}` } : d),
     },
     {
       title: "Plans",
@@ -55,7 +58,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       icon: (
         <SquareLibrary />
       ),
-      items: []
+      items: plans.map(p => p ? { title: p.title, url: `/dashboard/plans/${p.id}` } : p)
     },
     {
       title: "Manage records",
